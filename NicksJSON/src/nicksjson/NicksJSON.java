@@ -7,11 +7,9 @@ package nicksjson;
 import java.io.FileReader; 
 import java.io.IOException;
 import java.io.Reader;
-import java.util.Iterator; 
-import java.util.Map; 
+import java.io.FileWriter;
 import java.util.Scanner;
 
-import org.json.simple.JSONArray; 
 import org.json.simple.JSONObject; 
 import org.json.simple.parser.*;
 /**
@@ -25,17 +23,25 @@ public class NicksJSON {
      */
     public static void main(String[] args) {
         // Code sandboxed from https://www.geeksforgeeks.org/parse-json-java/
-        // Code in JSON1.json file from same site
-        /*Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         
+        // Get first and last names from user
         System.out.println("Enter your first name: ");
         String firstName = scanner.nextLine();
-        
         System.out.println("Enter your last name: ");
         String lastName = scanner.nextLine();
         
-        System.out.println("Enter your");
-*/
+        JSONObject obj = new JSONObject();
+        obj.put("firstName", firstName);
+        obj.put("lastName", lastName);
+
+
+        try (FileWriter file = new FileWriter("src/nicksjson/JSON1.json")) {
+            file.write(obj.toJSONString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
         // Create parser
         JSONParser parser = new JSONParser();
         
@@ -46,34 +52,12 @@ public class NicksJSON {
             JSONObject jo = (JSONObject) parser.parse(file);
 
             // Map data from json to Java
-            String firstName = (String) jo.get("firstName");
-            String lastName = (String) jo.get("lastName");
-            /*long age = (long) jo.get("age");
-            Map address = ((Map) jo.get("address"));
-            JSONArray ja = (JSONArray) jo.get("phoneNumbers");
-*/
-            
+            String firstName2 = (String) jo.get("firstName");
+            String lastName2 = (String) jo.get("lastName");
+                        
             // Print names and age
-            System.out.println(firstName + " " + lastName);            
-/*            System.out.println("Age: "+ age);
-
-            // iterate address map
-            Iterator<Map.Entry> itr1 = address.entrySet().iterator();
-            while (itr1.hasNext()) {
-                Map.Entry pair = itr1.next();
-                System.out.println(pair.getKey() + " : " + pair.getValue());
-            }
-
-            // iterate phone number array
-            Iterator itr2 = ja.iterator();
-            while (itr2.hasNext()) {
-                itr1 = ((Map) itr2.next()).entrySet().iterator();
-                while (itr1.hasNext()) {
-                    Map.Entry pair = itr1.next();
-                    System.out.println(pair.getKey() + " : " + pair.getValue());
-                }
-            }
-*/        
+            System.out.println(firstName2 + " " + lastName2);            
+      
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParseException e) {
