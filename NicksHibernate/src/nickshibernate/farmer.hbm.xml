@@ -1,0 +1,25 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name = "Farmer" table = "FARMER">
+      
+       <!-- description of object being mapped -->
+      <meta attribute = "class-description">
+         The Farmer class contains the first and last names as well as their acreage
+      </meta>
+      
+      <!-- object ID -->
+      <id name = "id" type = "int" column = "id">
+         <generator class="native"/>
+      </id>
+      
+      <!-- object firstName, lastName, acres -->
+      <property name = "firstName" column = "first_name" type = "string"/>
+      <property name = "lastName" column = "last_name" type = "string"/>
+      <property name = "acres" column = "acres" type = "int"/>
+      
+   </class>
+</hibernate-mapping>
