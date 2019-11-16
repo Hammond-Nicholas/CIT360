@@ -26,10 +26,15 @@ public class NicksHTTP {
             URL url = new URL("http://www.byui.edu");
             // Open URL connection
             HttpURLConnection huc1 = (HttpURLConnection) url.openConnection();
-            // Print off the first 8 items of the page header
-            for (int i = 1; i <= 8; i++) {
-                System.out.println(huc1.getHeaderFieldKey(i) + " = " + huc1.getHeaderField(i));
+            // Read InputStream
+            BufferedReader br = new BufferedReader(new InputStreamReader(huc1.getInputStream()));
+            String inputLine;
+            // Print out read input
+            while ((inputLine = br.readLine()) != null) {
+                System.out.println(inputLine);
             }
+            // Close stream
+            br.close();
             // Close URL connection
             huc1.disconnect();
         } catch (Exception e) {
