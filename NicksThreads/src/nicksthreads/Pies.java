@@ -12,7 +12,11 @@ import java.lang.Thread;
  * @author nrham
  */
 public class Pies extends Thread {
-    
+    // Pass counter in constructor
+    Counter counter;
+    public Pies (Counter _counter){
+        this.counter = _counter;
+    }
     public void run(){
         // ArrayList of pieFlavors
         ArrayList<String> pieFlavors = new ArrayList<String>();
@@ -29,6 +33,8 @@ public class Pies extends Thread {
         // Print ArrayList
         for(String flav : pieFlavors) {
             System.out.printf("%s Pie\n", flav);
+            System.out.println("Pie Counter: " + counter.getValue());
+            counter.increment();
             // Try/Catch taken from StackOverflow
             // https://stackoverflow.com/questions/24104313/how-do-i-make-a-delay-in-java
             try

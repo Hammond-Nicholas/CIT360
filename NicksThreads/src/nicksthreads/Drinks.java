@@ -12,6 +12,11 @@ import java.lang.Runnable;
  * @author nrham
  */
 public class Drinks implements Runnable {
+    // Pass counter in constructor
+    Counter counter;
+    public Drinks(Counter _counter) {
+        this.counter = _counter;
+    }
     public void run(){
         // ArrayList of drinkFlavors
         ArrayList<String> drinkFlavors = new ArrayList<String>();
@@ -28,6 +33,8 @@ public class Drinks implements Runnable {
         // Print ArrayList
         for(String flav : drinkFlavors) {
             System.out.printf("%s \n", flav);
+            System.out.println("Drink Counter: " + counter.getValue());
+            counter.increment();
             // Try/Catch taken from StackOverflow
             // https://stackoverflow.com/questions/24104313/how-do-i-make-a-delay-in-java
             try
